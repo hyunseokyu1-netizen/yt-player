@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, StatusBar, StyleSheet } from 'react-native';
-import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
+import { SafeAreaProvider, SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { usePlaylist } from './src/hooks/usePlaylist';
 import Player from './src/components/Player';
 import Playlist from './src/components/Playlist';
 import AddUrlModal from './src/components/AddUrlModal';
 
-export default function App() {
+function AppContent() {
   const [modalVisible, setModalVisible] = useState(false);
+  const { bottom: bottomInset } = useSafeAreaInsets();
   const {
     playlist,
     currentIndex,
@@ -22,7 +23,7 @@ export default function App() {
   } = usePlaylist();
 
   return (
-    <SafeAreaProvider>
+    <>
       <StatusBar barStyle="light-content" backgroundColor="#0f0f1a" />
       <SafeAreaView style={styles.safe} edges={['top', 'left', 'right']}>
         <View style={styles.header}>
@@ -55,7 +56,10 @@ export default function App() {
           />
         </View>
 
-        <TouchableOpacity style={styles.fab} onPress={() => setModalVisible(true)}>
+        <TouchableOpacity
+          style={[styles.fab, { bottom: 24 + bottomInset }]}
+          onPress={() => setModalVisible(true)}
+        >
           <Text style={styles.fabText}>+</Text>
         </TouchableOpacity>
 
@@ -64,8 +68,17 @@ export default function App() {
           isLoading={isLoading}
           onAdd={addUrl}
           onClose={() => setModalVisible(false)}
+          bottomInset={bottomInset}
         />
       </SafeAreaView>
+    </>
+  );
+}
+
+export default function App() {
+  return (
+    <SafeAreaProvider>
+      <AppContent />
     </SafeAreaProvider>
   );
 }
@@ -117,7 +130,6 @@ const styles = StyleSheet.create({
   },
   fab: {
     position: 'absolute',
-    bottom: 32,
     right: 24,
     width: 56,
     height: 56,

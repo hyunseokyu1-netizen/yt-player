@@ -16,9 +16,10 @@ interface Props {
   isLoading: boolean;
   onAdd: (url: string) => Promise<string | null>;
   onClose: () => void;
+  bottomInset?: number;
 }
 
-export default function AddUrlModal({ visible, isLoading, onAdd, onClose }: Props) {
+export default function AddUrlModal({ visible, isLoading, onAdd, onClose, bottomInset = 0 }: Props) {
   const [url, setUrl] = useState('');
   const [error, setError] = useState('');
 
@@ -47,7 +48,7 @@ export default function AddUrlModal({ visible, isLoading, onAdd, onClose }: Prop
         style={styles.overlay}
         behavior={Platform.OS === 'ios' ? 'padding' : undefined}
       >
-        <View style={styles.sheet}>
+        <View style={[styles.sheet, { paddingBottom: 24 + bottomInset }]}>
           <Text style={styles.title}>유튜브 URL 추가</Text>
           <TextInput
             style={styles.input}
