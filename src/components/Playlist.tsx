@@ -1,33 +1,25 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-import DraggableFlatList, { RenderItemParams } from 'react-native-draggable-flatlist';
+import { View, Text, FlatList, StyleSheet } from 'react-native';
 import { PlaylistItem } from '../types';
 import PlaylistItemRow from './PlaylistItem';
 
 interface Props {
   playlist: PlaylistItem[];
   currentIndex: number;
-  onReorder: (data: PlaylistItem[]) => void;
+  onMoveUp: (index: number) => void;
+  onMoveDown: (index: number) => void;
   onDelete: (id: string) => void;
   onPlay: (index: number) => void;
 }
 
-export default function Playlist({ playlist, currentIndex, onReorder, onDelete, onPlay }: Props) {
-  const renderItem = ({ item, getIndex, drag, isActive }: RenderItemParams<PlaylistItem>) => {
-    const index = getIndex() ?? 0;
-    return (
-      <PlaylistItemRow
-        item={item}
-        index={index}
-        isActive={isActive}
-        isCurrent={index === currentIndex}
-        onPress={() => onPlay(index)}
-        onDelete={() => onDelete(item.id)}
-        drag={drag}
-      />
-    );
-  };
-
+export default function Playlist({
+  playlist,
+  currentIndex,
+  onMoveUp,
+  onMoveDown,
+  onDelete,
+  onPlay,
+}: Props) {
   if (playlist.length === 0) {
     return (
       <View style={styles.empty}>
@@ -38,12 +30,23 @@ export default function Playlist({ playlist, currentIndex, onReorder, onDelete, 
   }
 
   return (
-    <DraggableFlatList
+    <FlatList
       data={playlist}
       keyExtractor={(item) => item.id}
-      renderItem={renderItem}
-      onDragEnd={({ data }) => onReorder(data)}
       contentContainerStyle={styles.list}
+      renderItem={({ item, index }) => (
+        <PlaylistItemRow
+          item={item}
+          index={index}
+          isCurrent={index === currentIndex}
+          isFirst={index === 0}
+          isLast={index === playlist.length - 1}
+          onPress={() => onPlay(index)}
+          onDelete={() => onDelete(item.id)}
+          onMoveUp={() => onMoveUp(index)}
+          onMoveDown={() => onMoveDown(index)}
+        />
+      )}
     />
   );
 }

@@ -76,6 +76,26 @@ export function usePlaylist() {
     [save]
   );
 
+  const moveItem = useCallback(
+    (index: number, direction: 'up' | 'down') => {
+      setPlaylist((prev) => {
+        const next = [...prev];
+        const target = direction === 'up' ? index - 1 : index + 1;
+        if (target < 0 || target >= next.length) return prev;
+        [next[index], next[target]] = [next[target], next[index]];
+        save(next);
+        return next;
+      });
+      setCurrentIndex((ci) => {
+        const target = direction === 'up' ? index - 1 : index + 1;
+        if (ci === index) return target;
+        if (ci === target) return index;
+        return ci;
+      });
+    },
+    [save]
+  );
+
   const playNext = useCallback(() => {
     setCurrentIndex((ci) => (ci + 1 < playlist.length ? ci + 1 : ci));
   }, [playlist.length]);
@@ -96,6 +116,7 @@ export function usePlaylist() {
     addUrl,
     removeItem,
     reorderItems,
+    moveItem,
     playNext,
     playPrev,
     playAt,

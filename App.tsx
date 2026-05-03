@@ -1,13 +1,6 @@
 import React, { useState } from 'react';
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  StatusBar,
-  StyleSheet,
-  SafeAreaView,
-} from 'react-native';
-import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import { View, Text, TouchableOpacity, StatusBar, StyleSheet } from 'react-native';
+import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { usePlaylist } from './src/hooks/usePlaylist';
 import Player from './src/components/Player';
 import Playlist from './src/components/Playlist';
@@ -22,18 +15,18 @@ export default function App() {
     isLoading,
     addUrl,
     removeItem,
-    reorderItems,
+    moveItem,
     playNext,
     playPrev,
     playAt,
   } = usePlaylist();
 
   return (
-    <GestureHandlerRootView style={styles.root}>
+    <SafeAreaProvider>
       <StatusBar barStyle="light-content" backgroundColor="#0f0f1a" />
-      <SafeAreaView style={styles.safe}>
+      <SafeAreaView style={styles.safe} edges={['top', 'left', 'right']}>
         <View style={styles.header}>
-          <Text style={styles.headerTitle}>🎵 YT Player</Text>
+          <Text style={styles.headerTitle}>YT Player</Text>
           <Text style={styles.headerCount}>{playlist.length}곡</Text>
         </View>
 
@@ -48,14 +41,15 @@ export default function App() {
 
         <View style={styles.listHeader}>
           <Text style={styles.listTitle}>플레이리스트</Text>
-          <Text style={styles.listHint}>길게 눌러서 순서 변경</Text>
+          <Text style={styles.listHint}>▲▼ 버튼으로 순서 변경</Text>
         </View>
 
         <View style={styles.listContainer}>
           <Playlist
             playlist={playlist}
             currentIndex={currentIndex}
-            onReorder={reorderItems}
+            onMoveUp={(i) => moveItem(i, 'up')}
+            onMoveDown={(i) => moveItem(i, 'down')}
             onDelete={removeItem}
             onPlay={playAt}
           />
@@ -72,15 +66,11 @@ export default function App() {
           onClose={() => setModalVisible(false)}
         />
       </SafeAreaView>
-    </GestureHandlerRootView>
+    </SafeAreaProvider>
   );
 }
 
 const styles = StyleSheet.create({
-  root: {
-    flex: 1,
-    backgroundColor: '#0f0f1a',
-  },
   safe: {
     flex: 1,
     backgroundColor: '#0f0f1a',
@@ -98,6 +88,7 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontSize: 18,
     fontWeight: '800',
+    letterSpacing: 0.5,
   },
   headerCount: {
     color: '#888',

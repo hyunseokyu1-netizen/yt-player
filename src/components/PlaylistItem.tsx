@@ -5,27 +5,47 @@ import { PlaylistItem as Item } from '../types';
 interface Props {
   item: Item;
   index: number;
-  isActive: boolean;
   isCurrent: boolean;
+  isFirst: boolean;
+  isLast: boolean;
   onPress: () => void;
   onDelete: () => void;
-  drag: () => void;
+  onMoveUp: () => void;
+  onMoveDown: () => void;
 }
 
 export default function PlaylistItemRow({
   item,
   index,
-  isActive,
   isCurrent,
+  isFirst,
+  isLast,
   onPress,
   onDelete,
-  drag,
+  onMoveUp,
+  onMoveDown,
 }: Props) {
   return (
-    <View style={[styles.container, isActive && styles.dragging, isCurrent && styles.current]}>
-      <TouchableOpacity onLongPress={drag} style={styles.dragHandle}>
-        <Text style={styles.dragIcon}>☰</Text>
-      </TouchableOpacity>
+    <View style={[styles.container, isCurrent && styles.current]}>
+      <View style={styles.moveButtons}>
+        <TouchableOpacity
+          style={[styles.moveBtn, isFirst && styles.disabled]}
+          onPress={onMoveUp}
+          disabled={isFirst}
+          hitSlop={4}
+        >
+          <Text style={styles.moveIcon}>▲</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={[styles.moveBtn, isLast && styles.disabled]}
+          onPress={onMoveDown}
+          disabled={isLast}
+          hitSlop={4}
+        >
+          <Text style={styles.moveIcon}>▼</Text>
+        </TouchableOpacity>
+      </View>
+
       <TouchableOpacity style={styles.info} onPress={onPress} activeOpacity={0.7}>
         <Image source={{ uri: item.thumbnail }} style={styles.thumbnail} resizeMode="cover" />
         <View style={styles.textBlock}>
@@ -35,6 +55,7 @@ export default function PlaylistItemRow({
           </Text>
         </View>
       </TouchableOpacity>
+
       <TouchableOpacity style={styles.deleteBtn} onPress={onDelete} hitSlop={8}>
         <Text style={styles.deleteIcon}>✕</Text>
       </TouchableOpacity>
@@ -52,25 +73,25 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: '#2a2a3e',
   },
-  dragging: {
-    opacity: 0.8,
-    backgroundColor: '#2a2a3e',
-    shadowColor: '#000',
-    shadowOpacity: 0.4,
-    shadowRadius: 8,
-    elevation: 8,
-  },
   current: {
     borderLeftWidth: 3,
     borderLeftColor: '#ff0000',
   },
-  dragHandle: {
-    paddingRight: 10,
-    paddingVertical: 4,
+  moveButtons: {
+    flexDirection: 'column',
+    alignItems: 'center',
+    marginRight: 8,
+    gap: 2,
   },
-  dragIcon: {
+  moveBtn: {
+    padding: 4,
+  },
+  moveIcon: {
     color: '#555',
-    fontSize: 18,
+    fontSize: 12,
+  },
+  disabled: {
+    opacity: 0.2,
   },
   info: {
     flex: 1,
