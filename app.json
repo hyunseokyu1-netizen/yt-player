@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "yt_player_tmp",
-    "slug": "yt_player_tmp",
+    "name": "YT Player",
+    "slug": "yt-player",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
