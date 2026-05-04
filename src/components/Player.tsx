@@ -52,6 +52,7 @@ export default function Player({ item, onEnded, onPrev, onNext, hasPrev, hasNext
         videoId={item.videoId}
         play={playing}
         onChangeState={handleStateChange}
+        forceAndroidAutoplay
         initialPlayerParams={{
           preventFullScreen: false,
           modestbranding: true,
