@@ -33,9 +33,6 @@ function AppContent() {
             </View>
             <Text style={styles.headerTitle}>YT Playlist</Text>
           </View>
-          <TouchableOpacity style={styles.addUrlBtn} onPress={() => setModalVisible(true)}>
-            <Text style={styles.addUrlBtnText}>+ URL 추가</Text>
-          </TouchableOpacity>
         </View>
 
         <Player
@@ -61,6 +58,12 @@ function AppContent() {
             onDelete={removeItem}
             onPlay={playAt}
           />
+          <TouchableOpacity
+            style={[styles.addUrlBtn, { bottom: 16 + bottomInset }]}
+            onPress={() => setModalVisible(true)}
+          >
+            <Text style={styles.addUrlBtnText}>+ URL 추가</Text>
+          </TouchableOpacity>
         </View>
 
         <AddUrlModal
@@ -128,10 +131,17 @@ const styles = StyleSheet.create({
     letterSpacing: 0.3,
   },
   addUrlBtn: {
+    position: 'absolute',
+    right: 16,
     backgroundColor: '#8b1a1a',
-    paddingHorizontal: 16,
-    paddingVertical: 8,
-    borderRadius: 20,
+    paddingHorizontal: 18,
+    paddingVertical: 10,
+    borderRadius: 24,
+    elevation: 6,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 3 },
+    shadowOpacity: 0.4,
+    shadowRadius: 6,
   },
   addUrlBtnText: {
     color: '#fff',
