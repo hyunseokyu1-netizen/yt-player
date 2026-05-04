@@ -48,8 +48,8 @@ function AppContent() {
         />
 
         <View style={styles.listHeader}>
-          <Text style={styles.listTitle}>플레이리스트</Text>
-          <Text style={styles.listHint}>▲▼ 버튼으로 순서 변경</Text>
+          <Text style={styles.listTitle}>재생 목록</Text>
+          <Text style={styles.listCount}>{playlist.length}개</Text>
         </View>
 
         <View style={styles.listContainer}>
@@ -62,13 +62,6 @@ function AppContent() {
             onPlay={playAt}
           />
         </View>
-
-        <TouchableOpacity
-          style={[styles.fab, { bottom: 24 + bottomInset }]}
-          onPress={() => setModalVisible(true)}
-        >
-          <Text style={styles.fabText}>+</Text>
-        </TouchableOpacity>
 
         <AddUrlModal
           visible={modalVisible}
@@ -135,7 +128,7 @@ const styles = StyleSheet.create({
     letterSpacing: 0.3,
   },
   addUrlBtn: {
-    backgroundColor: '#ff0000',
+    backgroundColor: '#8b1a1a',
     paddingHorizontal: 16,
     paddingVertical: 8,
     borderRadius: 20,
@@ -159,32 +152,11 @@ const styles = StyleSheet.create({
     fontSize: 15,
     fontWeight: '700',
   },
-  listHint: {
-    color: '#555',
-    fontSize: 12,
+  listCount: {
+    color: '#888',
+    fontSize: 13,
   },
   listContainer: {
     flex: 1,
-  },
-  fab: {
-    position: 'absolute',
-    right: 24,
-    width: 56,
-    height: 56,
-    borderRadius: 28,
-    backgroundColor: '#ff0000',
-    justifyContent: 'center',
-    alignItems: 'center',
-    shadowColor: '#ff0000',
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.4,
-    shadowRadius: 8,
-    elevation: 8,
-  },
-  fabText: {
-    color: '#fff',
-    fontSize: 28,
-    fontWeight: '300',
-    lineHeight: 32,
   },
 });
