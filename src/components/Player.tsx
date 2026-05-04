@@ -27,7 +27,7 @@ export default function Player({ item, onEnded, onPrev, onNext, hasPrev, hasNext
 
   const handleStateChange = (state: string) => {
     if (state === 'ended') {
-      setPlaying(false);
+      if (!hasNext) setPlaying(false);
       onEnded();
     } else if (state === 'playing') {
       setPlaying(true);
