@@ -4,7 +4,7 @@ import YoutubePlayer, { YoutubeIframeRef } from 'react-native-youtube-iframe';
 import { PlaylistItem } from '../types';
 
 const { width } = Dimensions.get('window');
-const PLAYER_HEIGHT = Math.round(width * 9 / 21);
+const PLAYER_HEIGHT = Math.round(width * 9 / 16);
 
 interface Props {
   item: PlaylistItem | null;
