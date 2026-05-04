@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Modal,
   View,
@@ -7,8 +7,7 @@ import {
   TouchableOpacity,
   ActivityIndicator,
   StyleSheet,
-  KeyboardAvoidingView,
-  Platform,
+  Keyboard,
 } from 'react-native';
 
 interface Props {
@@ -23,6 +22,24 @@ export default function AddUrlModal({ visible, isLoading, onAdd, onClose, bottom
   const [url, setUrl] = useState('');
   const [error, setError] = useState('');
   const [focused, setFocused] = useState(false);
+  const [keyboardHeight, setKeyboardHeight] = useState(0);
+
+  useEffect(() => {
+    if (!visible) {
+      setKeyboardHeight(0);
+      return;
+    }
+    const show = Keyboard.addListener('keyboardDidShow', (e) => {
+      setKeyboardHeight(e.endCoordinates.height);
+    });
+    const hide = Keyboard.addListener('keyboardDidHide', () => {
+      setKeyboardHeight(0);
+    });
+    return () => {
+      show.remove();
+      hide.remove();
+    };
+  }, [visible]);
 
   const handleAdd = async () => {
     const trimmed = url.trim();
@@ -40,16 +57,18 @@ export default function AddUrlModal({ visible, isLoading, onAdd, onClose, bottom
   const handleClose = () => {
     setUrl('');
     setError('');
+    Keyboard.dismiss();
     onClose();
   };
 
+  // 키보드가 올라오면 overlay 하단에 패딩을 줘서 시트를 밀어올림
+  const overlayPaddingBottom = keyboardHeight > 0 ? keyboardHeight : 0;
+  const sheetPaddingBottom = keyboardHeight > 0 ? 16 : 20 + bottomInset;
+
   return (
     <Modal visible={visible} transparent animationType="slide" onRequestClose={handleClose}>
-      <KeyboardAvoidingView
-        style={styles.overlay}
-        behavior={Platform.OS === 'ios' ? 'padding' : undefined}
-      >
-        <View style={[styles.sheet, { paddingBottom: 20 + bottomInset }]}>
+      <View style={[styles.overlay, { paddingBottom: overlayPaddingBottom }]}>
+        <View style={[styles.sheet, { paddingBottom: sheetPaddingBottom }]}>
           <View style={styles.dragBar} />
 
           <View style={styles.titleRow}>
@@ -95,7 +114,7 @@ export default function AddUrlModal({ visible, isLoading, onAdd, onClose, bottom
 
           <Text style={styles.hint}>youtube.com/watch?v=... 또는 youtu.be/... 형식 지원</Text>
         </View>
-      </KeyboardAvoidingView>
+      </View>
     </Modal>
   );
 }
