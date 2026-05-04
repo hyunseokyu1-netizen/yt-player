@@ -4,7 +4,7 @@ import YoutubePlayer, { YoutubeIframeRef } from 'react-native-youtube-iframe';
 import { PlaylistItem } from '../types';
 
 const { width } = Dimensions.get('window');
-const PLAYER_HEIGHT = (width * 9) / 16;
+const PLAYER_HEIGHT = Math.round(width * 9 / 21);
 
 interface Props {
   item: PlaylistItem | null;
@@ -102,16 +102,16 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   placeholderText: { color: '#555', fontSize: 15 },
-  info: { paddingHorizontal: 16, paddingTop: 12, paddingBottom: 4 },
-  title: { color: '#fff', fontSize: 15, fontWeight: '600', lineHeight: 22 },
+  info: { paddingHorizontal: 16, paddingTop: 8, paddingBottom: 2 },
+  title: { color: '#fff', fontSize: 14, fontWeight: '600', lineHeight: 20 },
   controls: {
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    paddingVertical: 14,
+    paddingVertical: 8,
     gap: 48,
   },
-  sideBtn: { padding: 14 },
+  sideBtn: { padding: 10 },
   disabled: { opacity: 0.25 },
 
   triRight: {

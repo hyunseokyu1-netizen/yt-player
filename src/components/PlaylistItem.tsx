@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingVertical: 10,
+    paddingVertical: 7,
     paddingHorizontal: 12,
     backgroundColor: '#1e1e2e',
     borderBottomWidth: 1,
@@ -100,9 +100,9 @@ const styles = StyleSheet.create({
     gap: 10,
   },
   thumbnail: {
-    width: 72,
-    height: 48,
-    borderRadius: 6,
+    width: 64,
+    height: 42,
+    borderRadius: 5,
     backgroundColor: '#2a2a3e',
   },
   textBlock: {
