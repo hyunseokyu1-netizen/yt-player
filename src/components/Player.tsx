@@ -19,7 +19,6 @@ export default function Player({ item, onEnded, onPrev, onNext, hasPrev, hasNext
   const playerRef = useRef<YoutubeIframeRef>(null);
   const [playing, setPlaying] = useState(false);
 
-  // 곡이 바뀌면 자동 재생
   useEffect(() => {
     if (item) setPlaying(true);
     else setPlaying(false);
@@ -69,7 +68,6 @@ export default function Player({ item, onEnded, onPrev, onNext, hasPrev, hasNext
       </View>
 
       <View style={styles.controls}>
-        {/* 이전 */}
         <TouchableOpacity
           style={[styles.sideBtn, !hasPrev && styles.disabled]}
           onPress={onPrev}
@@ -81,23 +79,6 @@ export default function Player({ item, onEnded, onPrev, onNext, hasPrev, hasNext
           </View>
         </TouchableOpacity>
 
-        {/* 재생/정지 */}
-        <TouchableOpacity
-          style={styles.playBtn}
-          onPress={() => setPlaying((p) => !p)}
-          activeOpacity={0.8}
-        >
-          {playing ? (
-            <View style={styles.pauseWrap}>
-              <View style={styles.pauseBar} />
-              <View style={styles.pauseBar} />
-            </View>
-          ) : (
-            <View style={styles.triRight} />
-          )}
-        </TouchableOpacity>
-
-        {/* 다음 */}
         <TouchableOpacity
           style={[styles.sideBtn, !hasNext && styles.disabled]}
           onPress={onNext}
@@ -128,31 +109,22 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     paddingVertical: 14,
-    gap: 32,
+    gap: 48,
   },
-  sideBtn: { padding: 10 },
+  sideBtn: { padding: 14 },
   disabled: { opacity: 0.25 },
-
-  playBtn: {
-    width: 64, height: 64, borderRadius: 32,
-    backgroundColor: '#ff0000',
-    justifyContent: 'center', alignItems: 'center',
-  },
 
   triRight: {
     width: 0, height: 0,
-    borderTopWidth: 11, borderBottomWidth: 11, borderLeftWidth: 18,
+    borderTopWidth: 13, borderBottomWidth: 13, borderLeftWidth: 22,
     borderTopColor: 'transparent', borderBottomColor: 'transparent', borderLeftColor: '#fff',
     marginLeft: 4,
   },
   triLeft: {
     width: 0, height: 0,
-    borderTopWidth: 10, borderBottomWidth: 10, borderRightWidth: 16,
+    borderTopWidth: 13, borderBottomWidth: 13, borderRightWidth: 22,
     borderTopColor: 'transparent', borderBottomColor: 'transparent', borderRightColor: '#fff',
   },
-  pauseWrap: { flexDirection: 'row', gap: 6 },
-  pauseBar: { width: 5, height: 22, backgroundColor: '#fff', borderRadius: 2 },
-
-  skipRow: { flexDirection: 'row', alignItems: 'center', gap: 3 },
-  skipBar: { width: 4, height: 20, backgroundColor: '#fff', borderRadius: 2 },
+  skipRow: { flexDirection: 'row', alignItems: 'center', gap: 4 },
+  skipBar: { width: 4, height: 22, backgroundColor: '#fff', borderRadius: 2 },
 });
