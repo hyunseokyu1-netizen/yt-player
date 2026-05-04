@@ -45,50 +45,57 @@ export default function Player({ item, onEnded, onPrev, onNext, hasPrev, hasNext
 
   return (
     <View style={styles.container}>
-      <YoutubePlayer
-        ref={playerRef}
-        height={PLAYER_HEIGHT}
-        videoId={item.videoId}
-        play={playing}
-        onChangeState={handleStateChange}
-        forceAndroidAutoplay
-        initialPlayerParams={{
-          preventFullScreen: false,
-          modestbranding: true,
-          rel: false,
-        }}
-        webViewProps={{
-          allowsInlineMediaPlayback: true,
-          mediaPlaybackRequiresUserAction: false,
-        }}
-      />
+      {/* 플레이어 + 이전/다음 버튼 오버레이 */}
+      <View style={{ height: PLAYER_HEIGHT }}>
+        <YoutubePlayer
+          ref={playerRef}
+          height={PLAYER_HEIGHT}
+          videoId={item.videoId}
+          play={playing}
+          onChangeState={handleStateChange}
+          forceAndroidAutoplay
+          initialPlayerParams={{
+            preventFullScreen: false,
+            modestbranding: true,
+            rel: false,
+          }}
+          webViewProps={{
+            allowsInlineMediaPlayback: true,
+            mediaPlaybackRequiresUserAction: false,
+          }}
+        />
 
-      <View style={styles.info}>
-        <Text style={styles.title} numberOfLines={2}>{item.title}</Text>
-      </View>
-
-      <View style={styles.controls}>
+        {/* 이전 버튼 — 플레이어 좌측 하단 */}
         <TouchableOpacity
-          style={[styles.sideBtn, !hasPrev && styles.disabled]}
+          style={[styles.overlayBtn, styles.overlayLeft, !hasPrev && styles.disabled]}
           onPress={onPrev}
           disabled={!hasPrev}
         >
-          <View style={styles.skipRow}>
-            <View style={styles.skipBar} />
-            <View style={styles.triLeft} />
+          <View style={styles.btnBg}>
+            <View style={styles.skipRow}>
+              <View style={styles.skipBar} />
+              <View style={styles.triLeft} />
+            </View>
           </View>
         </TouchableOpacity>
 
+        {/* 다음 버튼 — 플레이어 우측 하단 */}
         <TouchableOpacity
-          style={[styles.sideBtn, !hasNext && styles.disabled]}
+          style={[styles.overlayBtn, styles.overlayRight, !hasNext && styles.disabled]}
           onPress={onNext}
           disabled={!hasNext}
         >
-          <View style={styles.skipRow}>
-            <View style={styles.triRight} />
-            <View style={styles.skipBar} />
+          <View style={styles.btnBg}>
+            <View style={styles.skipRow}>
+              <View style={styles.triRight} />
+              <View style={styles.skipBar} />
+            </View>
           </View>
         </TouchableOpacity>
+      </View>
+
+      <View style={styles.info}>
+        <Text style={styles.title} numberOfLines={1}>{item.title}</Text>
       </View>
     </View>
   );
@@ -102,29 +109,37 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   placeholderText: { color: '#555', fontSize: 15 },
-  info: { paddingHorizontal: 16, paddingTop: 8, paddingBottom: 2 },
-  title: { color: '#fff', fontSize: 14, fontWeight: '600', lineHeight: 20 },
-  controls: {
-    flexDirection: 'row',
+
+  overlayBtn: {
+    position: 'absolute',
+    bottom: 10,
+  },
+  overlayLeft: { left: 10 },
+  overlayRight: { right: 10 },
+  disabled: { opacity: 0.3 },
+
+  btnBg: {
+    backgroundColor: 'rgba(0,0,0,0.45)',
+    borderRadius: 24,
+    padding: 10,
     justifyContent: 'center',
     alignItems: 'center',
-    paddingVertical: 8,
-    gap: 48,
   },
-  sideBtn: { padding: 10 },
-  disabled: { opacity: 0.25 },
 
   triRight: {
     width: 0, height: 0,
-    borderTopWidth: 13, borderBottomWidth: 13, borderLeftWidth: 22,
+    borderTopWidth: 11, borderBottomWidth: 11, borderLeftWidth: 18,
     borderTopColor: 'transparent', borderBottomColor: 'transparent', borderLeftColor: '#fff',
-    marginLeft: 4,
+    marginLeft: 3,
   },
   triLeft: {
     width: 0, height: 0,
-    borderTopWidth: 13, borderBottomWidth: 13, borderRightWidth: 22,
+    borderTopWidth: 11, borderBottomWidth: 11, borderRightWidth: 18,
     borderTopColor: 'transparent', borderBottomColor: 'transparent', borderRightColor: '#fff',
   },
-  skipRow: { flexDirection: 'row', alignItems: 'center', gap: 4 },
-  skipBar: { width: 4, height: 22, backgroundColor: '#fff', borderRadius: 2 },
+  skipRow: { flexDirection: 'row', alignItems: 'center', gap: 3 },
+  skipBar: { width: 4, height: 18, backgroundColor: '#fff', borderRadius: 2 },
+
+  info: { paddingHorizontal: 16, paddingTop: 8, paddingBottom: 6 },
+  title: { color: '#fff', fontSize: 14, fontWeight: '600', lineHeight: 20 },
 });
