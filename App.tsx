@@ -27,8 +27,15 @@ function AppContent() {
       <StatusBar barStyle="light-content" backgroundColor="#0f0f1a" />
       <SafeAreaView style={styles.safe} edges={['top', 'left', 'right']}>
         <View style={styles.header}>
-          <Text style={styles.headerTitle}>YT Player</Text>
-          <Text style={styles.headerCount}>{playlist.length}곡</Text>
+          <View style={styles.logoRow}>
+            <View style={styles.logoIcon}>
+              <View style={styles.logoTriangle} />
+            </View>
+            <Text style={styles.headerTitle}>YT Playlist</Text>
+          </View>
+          <TouchableOpacity style={styles.addUrlBtn} onPress={() => setModalVisible(true)}>
+            <Text style={styles.addUrlBtnText}>+ URL 추가</Text>
+          </TouchableOpacity>
         </View>
 
         <Player
@@ -97,15 +104,46 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: '#1e1e2e',
   },
+  logoRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 10,
+  },
+  logoIcon: {
+    width: 36,
+    height: 36,
+    borderRadius: 8,
+    backgroundColor: '#ff0000',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  logoTriangle: {
+    width: 0,
+    height: 0,
+    borderTopWidth: 7,
+    borderBottomWidth: 7,
+    borderLeftWidth: 12,
+    borderTopColor: 'transparent',
+    borderBottomColor: 'transparent',
+    borderLeftColor: '#fff',
+    marginLeft: 2,
+  },
   headerTitle: {
     color: '#fff',
     fontSize: 18,
     fontWeight: '800',
-    letterSpacing: 0.5,
+    letterSpacing: 0.3,
   },
-  headerCount: {
-    color: '#888',
-    fontSize: 13,
+  addUrlBtn: {
+    backgroundColor: '#ff0000',
+    paddingHorizontal: 16,
+    paddingVertical: 8,
+    borderRadius: 20,
+  },
+  addUrlBtnText: {
+    color: '#fff',
+    fontSize: 14,
+    fontWeight: '700',
   },
   listHeader: {
     flexDirection: 'row',
