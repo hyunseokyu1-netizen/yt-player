@@ -141,3 +141,15 @@ Suggested screens:
 ## Privacy Policy URL
 
 https://hyunseokyu1-netizen.github.io/yt-player-privacy/
+
+
+
+## 구글스토어
+### 출시 노트
+
+<en-US>
+Build your own YouTube playlist and watch videos one after another — automatically.
+</en-US>
+<ko-KR>
+유튜브 영상을 나만의 플레이리스트로 묶어 순서대로 자동 재생하세요.
+</ko-KR>
