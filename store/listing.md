@@ -1,9 +1,9 @@
-# YT Player — Google Play 스토어 등록 정보
+# ChainPlay — Google Play 스토어 등록 정보
 
 ---
 
 ## 앱 이름
-YT Player
+ChainPlay
 
 ---
 
@@ -72,12 +72,12 @@ https://hyunseokyu1-netizen.github.io/yt-player-privacy/
 ---
 ---
 
-# YT Player — Google Play Store Listing (English)
+# ChainPlay — Google Play Store Listing (English)
 
 ---
 
 ## App Name
-YT Player
+ChainPlay
 
 ---
 
