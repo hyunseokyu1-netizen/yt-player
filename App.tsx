@@ -31,7 +31,7 @@ function AppContent() {
             <View style={styles.logoIcon}>
               <View style={styles.logoTriangle} />
             </View>
-            <Text style={styles.headerTitle}>YT Playlist</Text>
+            <Text style={styles.headerTitle}>ChainPlay</Text>
           </View>
         </View>
 
@@ -109,7 +109,9 @@ const styles = StyleSheet.create({
     width: 36,
     height: 36,
     borderRadius: 8,
-    backgroundColor: '#ff0000',
+    backgroundColor: '#03030a',
+    borderWidth: 1.5,
+    borderColor: '#00f0ff',
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -121,14 +123,14 @@ const styles = StyleSheet.create({
     borderLeftWidth: 12,
     borderTopColor: 'transparent',
     borderBottomColor: 'transparent',
-    borderLeftColor: '#fff',
+    borderLeftColor: '#00d8f0',
     marginLeft: 2,
   },
   headerTitle: {
     color: '#fff',
     fontSize: 18,
     fontWeight: '800',
-    letterSpacing: 0.3,
+    letterSpacing: 0.5,
   },
   addUrlBtn: {
     position: 'absolute',

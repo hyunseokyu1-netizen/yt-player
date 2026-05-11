@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "YT Player",
-    "slug": "yt-player",
+    "name": "ChainPlay",
+    "slug": "chainplay",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
