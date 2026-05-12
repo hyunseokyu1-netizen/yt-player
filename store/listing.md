@@ -67,7 +67,7 @@ Google Play는 폰 스크린샷 최소 2장이 필요합니다.
 
 ## 개인정보처리방침 URL
 
-https://hyunseokyu1-netizen.github.io/yt-player-privacy/
+https://hyunseokyu1-netizen.github.io/chain-play-privacy/
 
 ---
 ---
@@ -140,7 +140,7 @@ Suggested screens:
 
 ## Privacy Policy URL
 
-https://hyunseokyu1-netizen.github.io/yt-player-privacy/
+https://hyunseokyu1-netizen.github.io/chain-play-privacy/
 
 
 
