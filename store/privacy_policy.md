@@ -1,13 +1,13 @@
 # 개인정보처리방침 / Privacy Policy
 
-**YT Player**
+**ChainPlay**
 최종 업데이트: 2026년 5월
 
 ---
 
 ## 수집하는 정보
 
-YT Player는 사용자의 개인정보를 수집하지 않습니다.
+ChainPlay는 사용자의 개인정보를 수집하지 않습니다.
 
 앱이 기기에 저장하는 정보:
 - 사용자가 직접 추가한 YouTube 영상 URL 및 제목, 썸네일 (기기 로컬 저장소에만 저장)
@@ -48,7 +48,7 @@ YouTube의 개인정보처리방침: https://policies.google.com/privacy
 
 ## Privacy Policy (English)
 
-**YT Player** does not collect any personal information from users.
+**ChainPlay** does not collect any personal information from users.
 
 The app stores only YouTube video URLs, titles, and thumbnails that the user explicitly adds — solely on the device's local storage. This data is never transmitted to any external server and is deleted when the app is uninstalled.
 
