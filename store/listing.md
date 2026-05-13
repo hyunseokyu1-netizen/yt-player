@@ -8,13 +8,13 @@ ChainPlay
 ---
 
 ## 짧은 설명 (80자 이내)
-유튜브 플레이리스트를 만들고 순차 자동 재생. YouTube Premium 없이도 동작합니다.
+동영상 알고리즘 순서가 아닌 내가 원하는 플레이리스트를 만들고 순차적으로 자동 재생.
 
 ---
 
 ## 전체 설명 (4000자 이내)
 
-유튜브 영상을 나만의 플레이리스트로 묶어 순서대로 자동 재생하세요.
+영상을 알고리즘이 아닌 나만의 플레이리스트로 묶어 순서대로 자동 재생하세요.
 
 **주요 기능**
 
@@ -38,7 +38,7 @@ ChainPlay
 - youtube.com/shorts/...
 - youtube.com/embed/...
 
-이 앱은 개인 사용 목적으로 만들어진 간단한 YouTube 플레이리스트 플레이어입니다.
+이 앱은 개인 사용 목적으로 만들어진 간단한 플레이리스트 플레이어입니다.
 재생은 YouTube의 공식 플레이어를 통해 이루어지며, 별도의 계정 로그인이 필요 없습니다.
 
 ---
@@ -82,13 +82,13 @@ ChainPlay
 ---
 
 ## Short Description (max 80 chars)
-Build your YouTube playlist and auto-play videos in sequence. No YouTube Premium needed.
+Skip the algorithm — build your own playlist and auto-play videos in your order.
 
 ---
 
 ## Full Description
 
-Build your own YouTube playlist and watch videos one after another — automatically.
+Watch videos your way — not the algorithm's way. Build your own playlist and let them play in sequence, automatically.
 
 **Key Features**
 
@@ -101,9 +101,9 @@ Build your own YouTube playlist and watch videos one after another — automatic
 
 **Perfect for**
 
-- Watching the same set of YouTube videos repeatedly
-- Playing specific videos in a fixed order without distractions
-- Anyone who wants a simple, no-frills YouTube player
+- Rewatching the same YouTube videos on repeat
+- Playing specific videos in a fixed order, your way
+- Anyone who wants a simple player without YouTube's clutter
 
 **Supported URL Formats**
 
@@ -112,7 +112,7 @@ Build your own YouTube playlist and watch videos one after another — automatic
 - youtube.com/shorts/...
 - youtube.com/embed/...
 
-This is a lightweight personal YouTube playlist player. Playback is handled entirely through YouTube's official player — no account login required.
+This is a simple playlist player built for personal use. Playback is handled entirely through YouTube's official player — no account login required.
 
 ---
 
@@ -148,7 +148,7 @@ https://hyunseokyu1-netizen.github.io/chain-play-privacy/
 ### 출시 노트
 
 <en-US>
-Build your own YouTube playlist and watch videos one after another — automatically.
+Watch videos your way — build your own playlist and auto-play in sequence.
 </en-US>
 <ko-KR>
 유튜브 영상을 나만의 플레이리스트로 묶어 순서대로 자동 재생하세요.
