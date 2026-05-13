@@ -106,17 +106,17 @@ def draw_d4_icon(icon_size):
     return img
 
 
-def make_feature_graphic():
+def make_feature_graphic(lang='ko'):
     img = Image.new('RGB', (W, H), BG)
     draw = ImageDraw.Draw(img)
 
-    # 배경 그라데이션 — 왼쪽 짙고 오른쪽 살짝 밝게
+    # 배경 그라데이션
     for x in range(W):
         t = x / W
         v = int(3 + 20 * t)
         draw.line([(x, 0), (x, H)], fill=(v, v, v+4))
 
-    # 오른쪽 사이안 안개 (아이콘 뒤 배경 글로우)
+    # 오른쪽 사이안 안개
     fog = Image.new('RGBA', (W, H), (0,0,0,0))
     ImageDraw.Draw(fog).ellipse([620, 80, 1010, 420], fill=(*CYAN, 18))
     img_rgba = img.convert('RGBA')
@@ -124,11 +124,27 @@ def make_feature_graphic():
     img = img_rgba.convert('RGB')
     draw = ImageDraw.Draw(img)
 
-    # ── 텍스트 영역 (왼쪽) ───────────────────────────────────────────────
-    font_title    = get_font(80, bold=True)
-    font_sub      = get_font(26, korean=True)
-    font_bullet   = get_font(22, korean=True)
-    font_tagline  = get_font(20, korean=True)
+    # ── 텍스트 (언어별) ──────────────────────────────────────────────────
+    is_ko = (lang == 'ko')
+
+    font_title   = get_font(80, bold=True)
+    font_sub     = get_font(26, korean=is_ko)
+    font_bullet  = get_font(22, korean=is_ko)
+    font_tagline = get_font(20, korean=is_ko)
+
+    sub_text     = "알고리즘 말고, 내가 만든 순서대로" if is_ko else "Your order. Not the algorithm's."
+    bullets      = (
+        ["원하는 영상만 골라 나만의 플레이리스트",
+         "한 영상 끝나면 다음으로 자동 재생",
+         "URL 붙여넣기만으로 즉시 추가"]
+        if is_ko else
+        ["Pick any videos — build your own playlist",
+         "Auto-plays the next video when one ends",
+         "Just paste a URL to add instantly"]
+    )
+    tagline_text = ("알고리즘 없이, 내 플레이리스트를 내 순서대로"
+                    if is_ko else
+                    "No algorithm. Just your playlist, your way.")
 
     # 앱 이름
     draw.text((70, 72), "ChainPlay", fill=WHITE, font=font_title)
@@ -137,43 +153,39 @@ def make_feature_graphic():
     draw.rectangle([70, 162, 290, 165], fill=(*CYAN, 220))
 
     # 서브타이틀
-    draw.text((70, 180), "알고리즘 말고, 내가 만든 순서대로", fill=(0, 200, 215), font=font_sub)
+    draw.text((70, 180), sub_text, fill=(0, 200, 215), font=font_sub)
 
     # 불릿
-    bullets = [
-        "원하는 영상만 골라 나만의 플레이리스트",
-        "한 영상 끝나면 다음으로 자동 재생",
-        "URL 붙여넣기만으로 즉시 추가",
-    ]
     y = 242
     for b in bullets:
-        # 삼각형 불릿
         draw.polygon([(70, y+8), (70, y+20), (80, y+14)], fill=(*CYAN, 200))
         draw.text((90, y), b, fill=(160, 160, 160), font=font_bullet)
         y += 38
 
     # 태그라인
-    draw.text((70, H-58), "알고리즘 없이, 내 플레이리스트를 내 순서대로", fill=(80, 80, 100), font=font_tagline)
+    draw.text((70, H-58), tagline_text, fill=(80, 80, 100), font=font_tagline)
 
     # ── D4 아이콘 (오른쪽) ───────────────────────────────────────────────
     icon_size = 320
     icon = draw_d4_icon(icon_size)
 
-    # 아이콘 하단 반사 (약한 수직 미러)
     img_rgba2 = img.convert('RGBA')
     icon_pos_x = W - icon_size - 60
     icon_pos_y = (H - icon_size) // 2
 
-    # 글로우 레이어 (아이콘 배경)
     icon_bg = Image.new('RGBA', (W, H), (0,0,0,0))
     icon_bg.paste(icon, (icon_pos_x, icon_pos_y))
     img_rgba2.alpha_composite(icon_bg)
 
-    img = img_rgba2.convert('RGB')
-    return img
+    return img_rgba2.convert('RGB')
 
 
 if __name__ == '__main__':
-    out_path = os.path.join(OUT, 'feature_graphic.png')
-    make_feature_graphic().save(out_path)
-    print(f'✓ {out_path}  ({W}×{H})')
+    ko_path = os.path.join(OUT, 'feature_graphic.png')
+    en_path = os.path.join(OUT, 'feature_graphic_en.png')
+
+    make_feature_graphic('ko').save(ko_path)
+    print(f'✓ {ko_path}  ({W}×{H})')
+
+    make_feature_graphic('en').save(en_path)
+    print(f'✓ {en_path}  ({W}×{H})')
