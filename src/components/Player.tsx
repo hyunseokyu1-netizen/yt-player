@@ -2,6 +2,7 @@ import React, { useRef, useState, useEffect } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Dimensions } from 'react-native';
 import YoutubePlayer, { YoutubeIframeRef } from 'react-native-youtube-iframe';
 import { PlaylistItem } from '../types';
+import { t } from '../i18n';
 
 const { width } = Dimensions.get('window');
 const PLAYER_HEIGHT = Math.round(width * 9 / 16);
@@ -38,7 +39,7 @@ export default function Player({ item, onEnded, onPrev, onNext, hasPrev, hasNext
   if (!item) {
     return (
       <View style={[styles.placeholder, { height: PLAYER_HEIGHT }]}>
-        <Text style={styles.placeholderText}>플레이리스트에 영상을 추가해주세요</Text>
+        <Text style={styles.placeholderText}>{t.playerEmpty}</Text>
       </View>
     );
   }

@@ -9,6 +9,7 @@ import {
   StyleSheet,
   Keyboard,
 } from 'react-native';
+import { t } from '../i18n';
 
 interface Props {
   visible: boolean;
@@ -72,7 +73,7 @@ export default function AddUrlModal({ visible, isLoading, onAdd, onClose, bottom
           <View style={styles.dragBar} />
 
           <View style={styles.titleRow}>
-            <Text style={styles.title}>YouTube URL 추가</Text>
+            <Text style={styles.title}>{t.modalTitle}</Text>
             <TouchableOpacity onPress={handleClose} hitSlop={12} disabled={isLoading}>
               <Text style={styles.closeIcon}>✕</Text>
             </TouchableOpacity>
@@ -85,7 +86,7 @@ export default function AddUrlModal({ visible, isLoading, onAdd, onClose, bottom
             </View>
             <TextInput
               style={styles.input}
-              placeholder="YouTube URL을 붙여넣기 하세요"
+              placeholder={t.inputPlaceholder}
               placeholderTextColor="#666"
               value={url}
               onChangeText={setUrl}
@@ -108,11 +109,11 @@ export default function AddUrlModal({ visible, isLoading, onAdd, onClose, bottom
             {isLoading ? (
               <ActivityIndicator color="#fff" size="small" />
             ) : (
-              <Text style={styles.addBtnText}>+ 플레이리스트에 추가</Text>
+              <Text style={styles.addBtnText}>{t.addButton}</Text>
             )}
           </TouchableOpacity>
 
-          <Text style={styles.hint}>youtube.com/watch?v=... 또는 youtu.be/... 형식 지원</Text>
+          <Text style={styles.hint}>{t.urlHint}</Text>
         </View>
       </View>
     </Modal>

@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { PlaylistItem } from '../types';
 import { extractVideoId, fetchVideoInfo } from '../utils/youtube';
+import { t } from '../i18n';
 
 const STORAGE_KEY = '@yt_playlist';
 
@@ -23,10 +24,10 @@ export function usePlaylist() {
   const addUrl = useCallback(
     async (url: string): Promise<string | null> => {
       const videoId = extractVideoId(url);
-      if (!videoId) return '유효한 유튜브 URL이 아닙니다.';
+      if (!videoId) return t.invalidUrl;
 
       const already = playlist.some((p) => p.videoId === videoId);
-      if (already) return '이미 플레이리스트에 있습니다.';
+      if (already) return t.alreadyExists;
 
       setIsLoading(true);
       const info = await fetchVideoInfo(url);

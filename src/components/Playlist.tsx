@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text, FlatList, StyleSheet } from 'react-native';
 import { PlaylistItem } from '../types';
 import PlaylistItemRow from './PlaylistItem';
+import { t } from '../i18n';
 
 interface Props {
   playlist: PlaylistItem[];
@@ -23,8 +24,8 @@ export default function Playlist({
   if (playlist.length === 0) {
     return (
       <View style={styles.empty}>
-        <Text style={styles.emptyText}>플레이리스트가 비어있습니다</Text>
-        <Text style={styles.emptyHint}>아래 + 버튼으로 유튜브 URL을 추가해보세요</Text>
+        <Text style={styles.emptyText}>{t.listEmpty}</Text>
+        <Text style={styles.emptyHint}>{t.listEmptyHint}</Text>
       </View>
     );
   }
