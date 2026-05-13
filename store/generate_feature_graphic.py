@@ -137,13 +137,13 @@ def make_feature_graphic():
     draw.rectangle([70, 162, 290, 165], fill=(*CYAN, 220))
 
     # 서브타이틀
-    draw.text((70, 180), "YouTube 플레이리스트 플레이어", fill=(0, 200, 215), font=font_sub)
+    draw.text((70, 180), "알고리즘 말고, 내가 만든 순서대로", fill=(0, 200, 215), font=font_sub)
 
     # 불릿
     bullets = [
-        "유튜브 영상 순차 자동 재생",
-        "플레이리스트 저장 및 관리",
-        "YouTube Premium 없이도 동작",
+        "원하는 영상만 골라 나만의 플레이리스트",
+        "한 영상 끝나면 다음으로 자동 재생",
+        "URL 붙여넣기만으로 즉시 추가",
     ]
     y = 242
     for b in bullets:
@@ -153,7 +153,7 @@ def make_feature_graphic():
         y += 38
 
     # 태그라인
-    draw.text((70, H-58), "URL 붙여넣기만으로 바로 재생", fill=(80, 80, 100), font=font_tagline)
+    draw.text((70, H-58), "알고리즘 없이, 내 플레이리스트를 내 순서대로", fill=(80, 80, 100), font=font_tagline)
 
     # ── D4 아이콘 (오른쪽) ───────────────────────────────────────────────
     icon_size = 320
