@@ -1,6 +1,15 @@
-import { getLocales } from 'expo-localization';
+import { NativeModules, Platform } from 'react-native';
 
-const isKorean = getLocales()[0]?.languageCode === 'ko';
+// Android: NativeModules.I18nManager.localeIdentifier (e.g. "ko_KR")
+// iOS:     NativeModules.SettingsManager.settings.AppleLocale (e.g. "ko_KR")
+const rawLocale: string =
+  Platform.OS === 'android'
+    ? NativeModules.I18nManager?.localeIdentifier ?? ''
+    : NativeModules.SettingsManager?.settings?.AppleLocale ??
+      NativeModules.SettingsManager?.settings?.AppleLanguages?.[0] ??
+      '';
+
+const isKorean = rawLocale.startsWith('ko');
 
 export const t = {
   // App.tsx
