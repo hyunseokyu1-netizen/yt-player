@@ -1,15 +1,24 @@
 import { NativeModules, Platform } from 'react-native';
 
-// Android: NativeModules.I18nManager.localeIdentifier (e.g. "ko_KR")
-// iOS:     NativeModules.SettingsManager.settings.AppleLocale (e.g. "ko_KR")
-const rawLocale: string =
-  Platform.OS === 'android'
-    ? NativeModules.I18nManager?.localeIdentifier ?? ''
-    : NativeModules.SettingsManager?.settings?.AppleLocale ??
-      NativeModules.SettingsManager?.settings?.AppleLanguages?.[0] ??
-      '';
+function detectLocale(): string {
+  // Hermes (RN 0.71+) 기본 내장 Intl — 가장 신뢰도 높음
+  try {
+    const loc = Intl.DateTimeFormat().resolvedOptions().locale;
+    if (loc && loc !== 'und' && loc.length >= 2) return loc;
+  } catch {}
 
-const isKorean = rawLocale.startsWith('ko');
+  // iOS 폴백
+  if (Platform.OS === 'ios') {
+    const sm = (NativeModules as any).SettingsManager;
+    return sm?.settings?.AppleLocale ?? sm?.settings?.AppleLanguages?.[0] ?? 'en';
+  }
+
+  // Android 폴백
+  return (NativeModules as any).I18nManager?.localeIdentifier ?? 'en';
+}
+
+export const detectedLocale = detectLocale();
+const isKorean = detectedLocale.startsWith('ko');
 
 export const t = {
   // App.tsx
@@ -32,7 +41,7 @@ export const t = {
     ? 'youtube.com/watch?v=... 또는 youtu.be/... 형식 지원'
     : 'Supports youtube.com/watch?v=... or youtu.be/...',
 
-  // 에러 메시지 (usePlaylist.ts)
+  // 에러 메시지
   invalidUrl: isKorean ? '유효한 유튜브 URL이 아닙니다.' : 'Invalid YouTube URL.',
   alreadyExists: isKorean ? '이미 플레이리스트에 있습니다.' : 'Already in your playlist.',
 };
