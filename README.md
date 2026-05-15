@@ -1,21 +1,52 @@
-# YT Player
+# ChainPlay
 
-유튜브 URL을 플레이리스트에 추가해서 순서대로 재생하는 모바일 플레이어 앱.  
-YouTube Premium 없이 음악·영상 플레이리스트를 관리하고 싶은 사람을 위해 만들었습니다.
+![Feature Graphic](https://raw.githubusercontent.com/hyunseokyu1-netizen/yt-player/main/store/feature_graphic_en.png)
 
-**대상 플랫폼:** Android  
-**용도:** 개인 사용 목적으로 만든 앱입니다. 앱 스토어에 등록되어 있지 않으며, APK를 직접 설치해서 사용합니다.
+**Your playlist. Your order. Not the algorithm's.**
 
-## 주요 기능
+A simple Android app that lets you build your own YouTube playlist and auto-play videos in sequence — no algorithm, no clutter, no account login required.
 
-- **URL 추가** — 유튜브 링크를 붙여넣으면 제목·썸네일 자동 조회
-- **순서 재생** — 영상이 끝나면 자동으로 다음 영상 재생
-- **재생 제어** — 재생/정지, 이전/다음 버튼 (플레이어 오버레이)
-- **순서 변경** — ▲▼ 버튼으로 플레이리스트 순서 조정
-- **삭제** — 각 항목 우측 ✕ 버튼으로 삭제
-- **로컬 저장** — 앱을 껐다 켜도 플레이리스트 유지 (AsyncStorage)
+[![Platform](https://img.shields.io/badge/platform-Android-green)](https://developer.android.com)
+[![Expo](https://img.shields.io/badge/Expo-SDK%2054-blue)](https://expo.dev)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.9-3178C6)](https://www.typescriptlang.org)
+[![Version](https://img.shields.io/badge/version-2.0-brightgreen)](#version-history)
 
-## 지원 URL 형식
+---
+
+## Screenshots
+
+<table>
+  <tr>
+    <td align="center">
+      <img src="https://raw.githubusercontent.com/hyunseokyu1-netizen/yt-player/main/store/screenshot_store_en_1.png" width="220" alt="Main Screen"/><br/>
+      <sub>Main Screen</sub>
+    </td>
+    <td align="center">
+      <img src="https://raw.githubusercontent.com/hyunseokyu1-netizen/yt-player/main/store/screenshot_store_en_2.png" width="220" alt="Add URL Modal"/><br/>
+      <sub>Add URL</sub>
+    </td>
+    <td align="center">
+      <img src="https://raw.githubusercontent.com/hyunseokyu1-netizen/yt-player/main/store/screenshot_store_ko_1.png" width="220" alt="메인 화면"/><br/>
+      <sub>메인 화면 (한국어)</sub>
+    </td>
+  </tr>
+</table>
+
+---
+
+## Features
+
+- **Paste any YouTube URL** — supports `youtube.com/watch`, `youtu.be`, `Shorts`, and `embed` formats
+- **Auto-play next** — when one video ends, the next one starts automatically
+- **Prev / Next buttons** — overlaid on the player for quick navigation
+- **Reorder freely** — move items up or down with ▲▼ buttons
+- **Remove items** — tap ✕ to delete from the list
+- **Persistent playlist** — list is saved locally and survives app restarts (AsyncStorage)
+- **Auto language** — switches between Korean and English based on system language
+
+---
+
+## Supported URL Formats
 
 ```
 https://www.youtube.com/watch?v=VIDEO_ID
@@ -24,44 +55,49 @@ https://www.youtube.com/embed/VIDEO_ID
 https://www.youtube.com/shorts/VIDEO_ID
 ```
 
-## 기술 스택
+---
 
-| 항목 | 내용 |
+## Tech Stack
+
+| | |
 |---|---|
-| 프레임워크 | Expo SDK 54 (React Native 0.81) |
-| 언어 | TypeScript 5.9 |
-| 플레이어 | react-native-youtube-iframe (WebView 기반) |
-| 영상 정보 | YouTube oEmbed API (API 키 불필요) |
-| 저장 | @react-native-async-storage/async-storage |
-| 안전 영역 | react-native-safe-area-context |
+| Framework | Expo SDK 54 (React Native 0.81) |
+| Language | TypeScript 5.9 |
+| YouTube Player | react-native-youtube-iframe (IFrame API via WebView) |
+| Video Metadata | YouTube oEmbed API (no API key needed) |
+| Storage | @react-native-async-storage/async-storage |
+| Safe Area | react-native-safe-area-context |
+| i18n | Hermes built-in `Intl` API (no external library) |
+| Target | Android (New Architecture enabled) |
 
-## 실행 방법
+---
 
-### Expo Go로 개발 (빠른 테스트)
+## Getting Started
+
+### Quick Test with Expo Go
 
 ```bash
 npm install
 npx expo start
 ```
 
-핸드폰에 **Expo Go** 앱(SDK 54) 설치 후 QR 코드 스캔.  
-같은 Wi-Fi 환경이 필요합니다.
+Install **Expo Go** (SDK 54) on your phone and scan the QR code. Requires the same Wi-Fi network.
 
-### APK 빌드 + 기기 설치
+### Build APK & Install via ADB
 
 ```bash
-# 네이티브 프로젝트 생성 (최초 1회)
+# Generate native project (first time only)
 npx expo prebuild --platform android
 
-# APK 빌드
+# Build APK
 cd android && ANDROID_HOME=~/Library/Android/sdk ./gradlew assembleRelease
 
-# 기기에 설치 (USB 디버깅 연결 필요)
+# Install on device (USB debugging required)
 ~/Library/Android/sdk/platform-tools/adb install -r \
   app/build/outputs/apk/release/app-release.apk
 ```
 
-한 번에 빌드 + 설치:
+One-liner build + install:
 
 ```bash
 cd android && \
@@ -70,9 +106,90 @@ ANDROID_HOME=~/Library/Android/sdk ./gradlew assembleRelease && \
   app/build/outputs/apk/release/app-release.apk
 ```
 
-## 한계
+### Check connected device
 
-- 백그라운드 재생 불가 (YouTube 정책)
-- 화면이 켜진 상태에서만 재생
-- 광고는 YouTube 정책에 따라 표시될 수 있음
-- 유료 콘텐츠 및 지역 제한 영상 재생 불가
+```bash
+~/Library/Android/sdk/platform-tools/adb devices
+```
+
+---
+
+## Limitations
+
+- No background playback (YouTube policy)
+- Screen must stay on for playback to continue
+- Ads may appear per YouTube's policy
+- Paid content and region-restricted videos are not playable
+
+---
+
+## Version History
+
+| Version | Changes |
+|---|---|
+| v2.0 | Korean / English auto language switching |
+| v1.0 | Initial release — playlist, auto-play, reorder, local save |
+
+---
+
+## About
+
+This app was built for personal use. It uses YouTube's official IFrame Player API through `react-native-youtube-iframe` — no unauthorized access, no scraping.
+
+**Privacy Policy:** https://hyunseokyu1-netizen.github.io/chain-play-privacy/
+
+---
+
+## Why "ChainPlay"?
+
+This project started as **yt-player** — a purely functional name I gave it while building the first prototype. The idea was simple: chain YouTube videos together and play them in sequence, like links in a chain.
+
+As the app grew into something worth publishing on the Play Store, I needed a proper name. "ChainPlay" stuck because:
+
+- **Chain** — videos are linked one after another, playing in your defined order
+- **Play** — straightforward, it's a player
+- The name captures the core idea: *you* define the chain, not the algorithm
+
+The GitHub repository still lives under the original `yt-player` slug for historical reasons, but the app and all store assets use the ChainPlay name.
+
+---
+
+---
+
+## 한국어 소개
+
+**알고리즘이 아닌, 내가 만든 순서대로.**
+
+유튜브 URL을 붙여넣어 나만의 플레이리스트를 만들고, 영상을 순서대로 자동 재생하는 안드로이드 앱입니다.
+
+### 주요 기능
+
+- URL 붙여넣기만으로 영상 추가 (youtube.com, youtu.be, Shorts 모두 지원)
+- 한 영상이 끝나면 다음 영상 자동 재생
+- 플레이어 위 오버레이 이전/다음 버튼
+- ▲▼ 버튼으로 플레이리스트 순서 변경
+- 앱 재시작 후에도 플레이리스트 유지
+- 시스템 언어에 따라 한국어/영어 자동 전환
+
+### 이름 변경: yt-player → ChainPlay
+
+처음엔 그냥 `yt-player`라고 이름 붙였습니다. 기능 중심의 임시 이름이었죠.
+
+Play Store 출시를 준비하면서 제대로 된 앱 이름이 필요해졌고, **ChainPlay**로 결정했습니다.
+
+- **Chain** — 내가 정한 순서대로 영상들이 이어지는 모습
+- **Play** — 플레이어
+- 핵심 가치를 담은 이름: *알고리즘이 아닌 내가 만든 체인*
+
+GitHub 저장소 슬러그는 역사적 이유로 `yt-player`를 유지하고 있지만, 앱과 스토어 에셋은 모두 ChainPlay 이름을 사용합니다.
+
+### 기술 스택
+
+| 항목 | 내용 |
+|---|---|
+| 프레임워크 | Expo SDK 54 (React Native 0.81) |
+| 언어 | TypeScript 5.9 |
+| 플레이어 | react-native-youtube-iframe |
+| 영상 정보 | YouTube oEmbed API |
+| 저장 | AsyncStorage |
+| 다국어 | Hermes 내장 Intl API |
