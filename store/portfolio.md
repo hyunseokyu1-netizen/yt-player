@@ -3,7 +3,7 @@
 <!--
   블로그 포트폴리오 페이지 작성용 원본 문서.
   이미지 링크는 GitHub raw URL 기준.
-  repo: https://github.com/hyunseokyu1-netizen/yt-player
+  repo: https://github.com/hyunseokyu1-netizen/chainplay
 -->
 
 ---
@@ -17,14 +17,14 @@
 | 플랫폼 | Android |
 | 기간 | 2026년 4월 ~ 2026년 5월 |
 | 상태 | Play Store 출시 준비 중 |
-| GitHub | https://github.com/hyunseokyu1-netizen/yt-player |
+| GitHub | https://github.com/hyunseokyu1-netizen/chainplay |
 | 개인정보처리방침 | https://hyunseokyu1-netizen.github.io/chain-play-privacy/ |
 
 ---
 
 ## 대표 이미지 (Feature Graphic)
 
-![ChainPlay Feature Graphic](https://raw.githubusercontent.com/hyunseokyu1-netizen/yt-player/main/store/feature_graphic.png)
+![ChainPlay Feature Graphic](https://raw.githubusercontent.com/hyunseokyu1-netizen/chainplay/main/store/feature_graphic.png)
 
 ---
 
@@ -75,11 +75,11 @@ ChainPlay는 이 문제를 해결하기 위해 만든 간단한 안드로이드 
 <table>
   <tr>
     <td align="center">
-      <img src="https://raw.githubusercontent.com/hyunseokyu1-netizen/yt-player/main/store/screenshot_store_ko_1.png" width="260" alt="메인 화면 (한국어)"/><br/>
+      <img src="https://raw.githubusercontent.com/hyunseokyu1-netizen/chainplay/main/store/screenshot_store_ko_1.png" width="260" alt="메인 화면 (한국어)"/><br/>
       <sub>메인 화면 — 한국어</sub>
     </td>
     <td align="center">
-      <img src="https://raw.githubusercontent.com/hyunseokyu1-netizen/yt-player/main/store/screenshot_store_en_1.png" width="260" alt="Main Screen (English)"/><br/>
+      <img src="https://raw.githubusercontent.com/hyunseokyu1-netizen/chainplay/main/store/screenshot_store_en_1.png" width="260" alt="Main Screen (English)"/><br/>
       <sub>Main Screen — English</sub>
     </td>
   </tr>
@@ -90,11 +90,11 @@ ChainPlay는 이 문제를 해결하기 위해 만든 간단한 안드로이드 
 <table>
   <tr>
     <td align="center">
-      <img src="https://raw.githubusercontent.com/hyunseokyu1-netizen/yt-player/main/store/screenshot_store_ko_2.png" width="260" alt="URL 추가 모달 (한국어)"/><br/>
+      <img src="https://raw.githubusercontent.com/hyunseokyu1-netizen/chainplay/main/store/screenshot_store_ko_2.png" width="260" alt="URL 추가 모달 (한국어)"/><br/>
       <sub>URL 추가 — 한국어</sub>
     </td>
     <td align="center">
-      <img src="https://raw.githubusercontent.com/hyunseokyu1-netizen/yt-player/main/store/screenshot_store_en_2.png" width="260" alt="Add URL Modal (English)"/><br/>
+      <img src="https://raw.githubusercontent.com/hyunseokyu1-netizen/chainplay/main/store/screenshot_store_en_2.png" width="260" alt="Add URL Modal (English)"/><br/>
       <sub>Add URL — English</sub>
     </td>
   </tr>
@@ -104,7 +104,7 @@ ChainPlay는 이 문제를 해결하기 위해 만든 간단한 안드로이드 
 
 ## 앱 아이콘
 
-![ChainPlay Icon](https://raw.githubusercontent.com/hyunseokyu1-netizen/yt-player/main/store/icon_512.png)
+![ChainPlay Icon](https://raw.githubusercontent.com/hyunseokyu1-netizen/chainplay/main/store/icon_512.png)
 
 ---
 

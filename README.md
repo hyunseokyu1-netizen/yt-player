@@ -1,6 +1,6 @@
 # ChainPlay
 
-![Feature Graphic](https://raw.githubusercontent.com/hyunseokyu1-netizen/yt-player/main/store/feature_graphic_en.png)
+![Feature Graphic](https://raw.githubusercontent.com/hyunseokyu1-netizen/chainplay/main/store/feature_graphic_en.png)
 
 **Your playlist. Your order. Not the algorithm's.**
 
@@ -18,15 +18,15 @@ A simple Android app that lets you build your own YouTube playlist and auto-play
 <table>
   <tr>
     <td align="center">
-      <img src="https://raw.githubusercontent.com/hyunseokyu1-netizen/yt-player/main/store/screenshot_store_en_1.png" width="220" alt="Main Screen"/><br/>
+      <img src="https://raw.githubusercontent.com/hyunseokyu1-netizen/chainplay/main/store/screenshot_store_en_1.png" width="220" alt="Main Screen"/><br/>
       <sub>Main Screen</sub>
     </td>
     <td align="center">
-      <img src="https://raw.githubusercontent.com/hyunseokyu1-netizen/yt-player/main/store/screenshot_store_en_2.png" width="220" alt="Add URL Modal"/><br/>
+      <img src="https://raw.githubusercontent.com/hyunseokyu1-netizen/chainplay/main/store/screenshot_store_en_2.png" width="220" alt="Add URL Modal"/><br/>
       <sub>Add URL</sub>
     </td>
     <td align="center">
-      <img src="https://raw.githubusercontent.com/hyunseokyu1-netizen/yt-player/main/store/screenshot_store_ko_1.png" width="220" alt="메인 화면"/><br/>
+      <img src="https://raw.githubusercontent.com/hyunseokyu1-netizen/chainplay/main/store/screenshot_store_ko_1.png" width="220" alt="메인 화면"/><br/>
       <sub>메인 화면 (한국어)</sub>
     </td>
   </tr>
@@ -150,7 +150,7 @@ As the app grew into something worth publishing on the Play Store, I needed a pr
 - **Play** — straightforward, it's a player
 - The name captures the core idea: *you* define the chain, not the algorithm
 
-The GitHub repository still lives under the original `yt-player` slug for historical reasons, but the app and all store assets use the ChainPlay name.
+The original repository was named `yt-player` and has since been renamed to `chainplay` to match the app name.
 
 ---
 
@@ -181,7 +181,7 @@ Play Store 출시를 준비하면서 제대로 된 앱 이름이 필요해졌고
 - **Play** — 플레이어
 - 핵심 가치를 담은 이름: *알고리즘이 아닌 내가 만든 체인*
 
-GitHub 저장소 슬러그는 역사적 이유로 `yt-player`를 유지하고 있지만, 앱과 스토어 에셋은 모두 ChainPlay 이름을 사용합니다.
+원래 `yt-player`였던 GitHub 저장소 이름도 앱 이름에 맞춰 `chainplay`로 변경했습니다.
 
 ### 기술 스택
 
